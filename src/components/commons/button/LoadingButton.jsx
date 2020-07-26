@@ -22,7 +22,7 @@ function LoadingButton({variant, as, handler}) {
             <Button
                 className = 'textButton'
                 variant={variant}
-                as = {as}
+                type = {as}
                 disabled={isLoading}
                 onClick={!isLoading ? handleClick : null}
             >

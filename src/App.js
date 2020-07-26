@@ -1,12 +1,22 @@
-import React from 'react';
+import React, {useState,useEffect} from 'react';
 import './App.css';
 import Login from './components/login/Login';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import Bar from './components/navbar/Bar'
 
 function App() {
+  const [logData, setLogData] = useState({ id : '0' , name:'', api_token:''});
+  const [IsUserLogged, setIsUserLogged] = useState(false);
+
+  useEffect(() => {
+    console.log(logData)
+    return () => {
+      
+    }
+  }, [logData])
   return (
-      <div className="py -4 col-md-4 offset-md-4">
-        <Login />
+      <div>
+        <Bar userName = {logData.name}/>
+        {!IsUserLogged && <Login onLoginResult = {data => setLogData(data)}/>}
       </div>
   );
 }

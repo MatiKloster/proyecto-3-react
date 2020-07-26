@@ -3,7 +3,7 @@ import InputGroup from '../commons/input-group/InputGroup';
 import Jumbotron from 'react-bootstrap/Jumbotron';
 import LoadingButton from '../commons/button/LoadingButton';
 
-function Login() {
+const  Login = (props) => {
   
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -28,23 +28,24 @@ function Login() {
         })
         .then((response) => {
           if (response.status === 401) {
-            console.log(response);
             alert('Credenciales incorrectas');
           }
           else{
-            response.json().then(json => {console.log(json.api_token)})
+            response.json().then(json => 
+              {props.onLoginResult(json)}
+            )
             alert('Ya estas logeado!');
           }
           resolve();
         })
         .catch(function(error) {
-              console.log('DO WHAT YOU WANT')
+          alert('Ocurrió un error mientras intentábamos logearte, volvé a intentar en unos instantes!');
       })
     );
   }
 
   return (
-    <Jumbotron>
+    <Jumbotron className="py-4 col-md-4 offset-md-4">
         <InputGroup
           attribute= {{
             id : 'user-Input',
