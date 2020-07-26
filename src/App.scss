@@ -1,0 +1,26 @@
+@import url(//fonts.googleapis.com/css?family=Carter+One);
+$colorLogo:rgb(255,80,0);
+
+.logo{
+  color: $colorLogo !important;
+  font-family: 'Carter One';
+}
+
+html{
+  height: 100%;
+box-sizing: border-box;
+}
+body{
+  background: url('img/bg.png')no-repeat 50% 0 fixed; 
+  background-size: cover;
+  position: relative;
+  margin: 0;
+  padding-bottom: 6rem;
+  min-height: 100%;
+}
+.textButton{
+  background-color:$colorLogo !important;
+  border-color: $colorLogo !important;
+  color: black !important ;
+  font-family: 'Carter One' !important;
+}
