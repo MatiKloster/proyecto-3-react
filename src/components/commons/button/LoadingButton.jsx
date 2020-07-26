@@ -1,23 +1,20 @@
 import React, {useEffect, useState} from 'react'
 import Button from 'react-bootstrap/Button';
 
-const simulateNetworkRequest = () => new Promise((resolve) => setTimeout(resolve, 2000));
   
 function LoadingButton({variant, as, handler}) {
     const [isLoading, setLoading] = useState(false);
 
     useEffect(() => {
     if (isLoading) {
-        simulateNetworkRequest().then(() => {
-        setLoading(false);
+        handler().then(() => {
+            setLoading(false);
         });
     }
     }, [isLoading]);
 
     const handleClick = () => {
         setLoading(true);
-        //api
-        handler();
     }
 
     return (

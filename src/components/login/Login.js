@@ -1,7 +1,7 @@
-import React, {Fragment, useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import InputGroup from '../commons/input-group/InputGroup';
 import Jumbotron from 'react-bootstrap/Jumbotron';
-import LoadingButton from '../commons/button/LoadingButton'
+import LoadingButton from '../commons/button/LoadingButton';
 
 function Login() {
   
@@ -18,15 +18,29 @@ function Login() {
   };
 
   const handleClick = () => {
-    fetch("https://proyecto-2-mkloster.herokuapp.com/api/user/token", {
-      method: 'GET',
-      headers: {
-        'email': email,
-        'password': password
-      },
-    }).then (function (response) {return response.json()})
-      .then(function (json) {/* Here is your json */})
-      .catch(function (error) {/*Handle error*/});
+    return new Promise((resolve) => 
+        fetch("https://proyecto-2-mkloster.herokuapp.com/api/user/token", {
+          method: 'GET',
+          headers: {
+            'email': email,
+            'password': password
+          },
+        })
+        .then((response) => {
+          if (response.status === 401) {
+            console.log(response);
+            alert('Credenciales incorrectas');
+          }
+          else{
+            response.json().then(json => {console.log(json.api_token)})
+            alert('Ya estas logeado!');
+          }
+          resolve();
+        })
+        .catch(function(error) {
+              console.log('DO WHAT YOU WANT')
+      })
+    );
   }
 
   return (
