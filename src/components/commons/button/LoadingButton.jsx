@@ -6,11 +6,17 @@ function LoadingButton({variant, as, handler}) {
     const [isLoading, setLoading] = useState(false);
 
     useEffect(() => {
-    if (isLoading) {
-        handler().then(() => {
-            setLoading(false);
-        });
-    }
+        let mounted = true;
+        if (isLoading) {
+            handler().then(() => {
+                if(mounted){
+                    setLoading(false);
+                }
+            });
+        }
+        return () => {
+            mounted = false;
+        }
     }, [isLoading]);
 
     const handleClick = () => {

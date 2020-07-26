@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import InputGroup from '../commons/input-group/InputGroup';
 import Jumbotron from 'react-bootstrap/Jumbotron';
 import LoadingButton from '../commons/button/LoadingButton';
