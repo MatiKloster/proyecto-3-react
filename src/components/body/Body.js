@@ -18,8 +18,8 @@ var runFilter =  (arr,filter,header) => {
 }
 
 function Body({headers,data}){
-    const [products, setproducts] = useState({data});
-    const [filteredProducts, setfilteredProducts] = useState({data});
+    const [products, setproducts] = useState([]);
+    const [filteredProducts, setfilteredProducts] = useState([]);
     const [filter, setfilter] = useState("");
     const [selectedFilter, setselectedFilter] = useState("name");
     const [NeedFilter, setNeedFilter] = useState(false)
@@ -27,15 +27,21 @@ function Body({headers,data}){
     useEffect(() => {
         if(NeedFilter){
             setfilteredProducts(runFilter(products,filter,selectedFilter));
-
+        }
+        else{
+            setfilteredProducts(data);
+            setproducts(data);
         }
         return () => {
             
         }
-    }, [NeedFilter])
+    }, [NeedFilter,data,selectedFilter,filter])
 
     const handleText = (str) => {
         setfilter(str);
+        if(str === ""){
+            setNeedFilter(false);
+        }
         setNeedFilter(true);
     }
 
@@ -52,7 +58,7 @@ function Body({headers,data}){
             />
             <EnhancedTable 
                 headers= {headers} 
-                products = {filteredProducts}/>
+                products = {filteredProducts === []? products: filteredProducts}/>
         </div>
     );
 }

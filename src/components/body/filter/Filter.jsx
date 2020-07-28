@@ -10,8 +10,9 @@ const Filter = ({headers,handleText,handleSelect}) => {
     handleSelect(event.target.value);
   }
     return (
-      <FormControl >
-        <TextField onChange = {(e) => handleText(e.target.value)}/>
+      <div style={{ display: "flex" }} className = "pb-4">
+      <div style={{ display: "flex", margin: "auto" }}>
+      <TextField onChange = {(e) => handleText(e.target.value)}/>
         <Select
           labelId=""
           id="select"
@@ -27,7 +28,8 @@ const Filter = ({headers,handleText,handleSelect}) => {
           <MenuItem value={"quantity"}>Cantidad</MenuItem>
           <MenuItem value={"genre"}>Genero</MenuItem> */}
         </Select>
-      </FormControl>
+      </div>
+    </div>
     );
 }
  
