@@ -1,26 +1,33 @@
-import React from 'react'
-import InputGroup from 'react-bootstrap/InputGroup';
-import DropdownButton from 'react-bootstrap/DropdownButton';
-import FormControl from 'react-bootstrap/FormControl';
+import React , {useState} from 'react';
+import { MenuItem, TextField, Select, FormControl, InputLabel} from '@material-ui/core';
 
 
-const Filter = () => {
-    return (  
-        <InputGroup className="mb-3">
-        <DropdownButton
-          as={InputGroup.Prepend}
-          variant="outline-secondary"
-          title="Dropdown"
-          id="input-group-dropdown-1"
+const Filter = ({headers,handleText,handleSelect}) => {
+  const [value, setValue] = useState("Nombre");
+  
+  const internalHandling = (event) => {
+    setValue(event.target.value);
+    handleSelect(event.target.value);
+  }
+    return (
+      <FormControl >
+        <TextField onChange = {(e) => handleText(e.target.value)}/>
+        <Select
+          labelId=""
+          id="select"
+          value={value}
+          onChange={internalHandling}
         >
-          <Dropdown.Item href="#">Action</Dropdown.Item>
-          <Dropdown.Item href="#">Another action</Dropdown.Item>
-          <Dropdown.Item href="#">Something else here</Dropdown.Item>
-          <Dropdown.Divider />
-          <Dropdown.Item href="#">Separated link</Dropdown.Item>
-        </DropdownButton>
-        <FormControl aria-describedby="basic-addon1" />
-      </InputGroup>
+          {headers.map((h) =>
+            <MenuItem value={h.id}>{h.label}</MenuItem>
+          )}
+          {/* <MenuItem value={"name"}>Nombre</MenuItem>
+          <MenuItem value={"year"}>Año</MenuItem>
+          <MenuItem value={"price"}>Precio</MenuItem>
+          <MenuItem value={"quantity"}>Cantidad</MenuItem>
+          <MenuItem value={"genre"}>Genero</MenuItem> */}
+        </Select>
+      </FormControl>
     );
 }
  

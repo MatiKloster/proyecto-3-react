@@ -11,25 +11,6 @@ import TableRow from "@material-ui/core/TableRow";
 import TableSortLabel from "@material-ui/core/TableSortLabel";
 import Paper from "@material-ui/core/Paper";
 
-function createData(name, genre, year, price, quantity) {
-  return { name, genre, year, price, quantity };
-}
-
-const rows = [
-  createData("Cupcake", 305, 3.7, 67, 4.3),
-  createData("Donut", 452, 25.0, 51, 4.9),
-  createData("Eclair", 262, 16.0, 24, 6.0),
-  createData("Frozen yoghurt", 159, 6.0, 24, 4.0),
-  createData("Gingerbread", 356, 16.0, 49, 3.9),
-  createData("Honeycomb", 408, 3.2, 87, 6.5),
-  createData("Ice cream sandwich", 237, 9.0, 37, 4.3),
-  createData("Jelly Bean", 375, 0.0, 94, 0.0),
-  createData("KitKat", 518, 26.0, 65, 7.0),
-  createData("Lollipop", 392, 0.2, 98, 0.0),
-  createData("Marshmallow", 318, 0, 81, 2.0),
-  createData("Nougat", 360, 19.0, 9, 37.0),
-  createData("Oreo", 437, 18.0, 63, 4.0)
-];
 
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
@@ -123,7 +104,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function EnhancedTable({headers}) {
+export default function EnhancedTable({headers ,products}) {
   const classes = useStyles();
   
   const [order, setOrder] = React.useState("asc");
@@ -137,8 +118,6 @@ export default function EnhancedTable({headers}) {
     setOrderBy(property);
   };
 
-  const handleSelectAllClick = event => {};
-
   const handleClick = (event, name) => {};
 
   const handleChangePage = (event, newPage) => {
@@ -150,11 +129,9 @@ export default function EnhancedTable({headers}) {
     setPage(0);
   };
 
-  const emptyRows =
-    rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
+  const emptyRows = rowsPerPage - Math.min(rowsPerPage, products.length - page * rowsPerPage);
 
   return (
-    <div className='py-4 col-md-8 offset-md-2'>
       <Paper className={classes.paper}>
         <TableContainer>
           <Table
@@ -167,13 +144,12 @@ export default function EnhancedTable({headers}) {
               classes={classes}
               order={order}
               orderBy={orderBy}
-              onSelectAllClick={handleSelectAllClick}
               onRequestSort={handleRequestSort}
-              rowCount={rows.length}
+              rowCount={products.length}
               headCells = {headers}
             />
             <TableBody>
-              {stableSort(rows, getComparator(order, orderBy))
+              {stableSort(products, getComparator(order, orderBy))
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((row, index) => {
                   const labelId = `enhanced-table-checkbox-${index}`;
@@ -181,23 +157,23 @@ export default function EnhancedTable({headers}) {
                   return (
                     <TableRow
                       hover
-                      onClick={event => handleClick(event, row.name)}
+                      onClick={event => handleClick(event, row[headers[0].id])}
                       role="checkbox"
                       tabIndex={-1}
-                      key={row.name}
+                      key={row[headers[0].id]}
                     >
                       <TableCell
-                        component="th"
-                        id={labelId}
-                        scope="row"
-                        align = "center"
+                      component="th"
+                      id={labelId}
+                      scope="row"
+                      align = "center"
                       >
-                        {row.name}
+                        {row[headers[0].id]}
                       </TableCell>
-                      <TableCell align="center">{row.genre}</TableCell>
-                      <TableCell align="center">{row.year}</TableCell>
-                      <TableCell align="center">{row.price}</TableCell>
-                      <TableCell align="center">{row.quantity}</TableCell>
+                      <TableCell align="center">{row[headers[1].id]}</TableCell>
+                      <TableCell align="center">{row[headers[2].id]}</TableCell>
+                      <TableCell align="center">{row[headers[3].id]}</TableCell>
+                      <TableCell align="center">{row[headers[4].id]}</TableCell>
                     </TableRow>
                   );
                 })}
@@ -212,13 +188,12 @@ export default function EnhancedTable({headers}) {
         <TablePagination
           rowsPerPageOptions={[5, 10, 25]}
           component="div"
-          count={rows.length}
+          count={products.length}
           rowsPerPage={rowsPerPage}
           page={page}
           onChangePage={handleChangePage}
           onChangeRowsPerPage={handleChangeRowsPerPage}
         />
       </Paper>
-    </div>
   );
 }
