@@ -6,7 +6,7 @@ var runFilter =  (arr,filter,header) => {
 
     var filterFn = function(obj) { 
 
-        if (typeof obj[header] === 'string' && ~obj[header].toLowerCase().indexOf(filter)) {
+        if (typeof obj[header] === 'string' && ~obj[header].toLowerCase().indexOf(filter.toLowerCase())) {
             return true;
         }
         if (typeof obj[header] === 'number' && ~(obj[header]).toString().indexOf(filter)) {
