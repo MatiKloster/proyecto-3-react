@@ -6,10 +6,10 @@ var runFilter =  (arr,filter,header) => {
 
     var filterFn = function(obj) { 
 
-        if (typeof obj[header] === 'string' && ~obj[header].indexOf(filter)) {
+        if (typeof obj[header] === 'string' && ~obj[header].toLowerCase().indexOf(filter)) {
             return true;
         }
-        if (typeof obj[header] === 'number' && ~obj[header] === filter) {
+        if (typeof obj[header] === 'number' && ~(obj[header]).toString().indexOf(filter)) {
             return true;
         }
      }
@@ -35,14 +35,17 @@ function Body({headers,data}){
         return () => {
             
         }
-    }, [NeedFilter,data,selectedFilter,filter])
+    }, [NeedFilter,data,selectedFilter,filter,products])
 
     const handleText = (str) => {
         setfilter(str);
         if(str === ""){
             setNeedFilter(false);
         }
-        setNeedFilter(true);
+        else{
+            setNeedFilter(true);
+        }
+        
     }
 
     const handleSelect = (selected) => {

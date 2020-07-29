@@ -1,9 +1,9 @@
 import React , {useState} from 'react';
-import { MenuItem, TextField, Select, FormControl, InputLabel} from '@material-ui/core';
+import { MenuItem, TextField, Select} from '@material-ui/core';
 
 
 const Filter = ({headers,handleText,handleSelect}) => {
-  const [value, setValue] = useState("Nombre");
+  const [value, setValue] = useState("name");
   
   const internalHandling = (event) => {
     setValue(event.target.value);

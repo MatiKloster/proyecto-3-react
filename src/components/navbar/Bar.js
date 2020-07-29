@@ -5,7 +5,7 @@ import { Navbar, Nav, NavDropdown} from 'react-bootstrap';
 const urlAlbums = 'https://proyecto-2-mkloster.herokuapp.com/api/albums';
 const urlMovies = 'https://proyecto-2-mkloster.herokuapp.com/api/movies';
 
-function Bar({userName, IsUserLogged , handleLogOff, handleAlbums, handleMovies}) {
+function Bar({userName, IsUserLogged , handleLogOff, handleProducts}) {
 
   return (
       <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
@@ -17,8 +17,8 @@ function Bar({userName, IsUserLogged , handleLogOff, handleAlbums, handleMovies}
           <NavDropdown title={userName} id="collasible-nav-dropdown">
               <NavDropdown.Item onClick={handleLogOff}>Deslogear</NavDropdown.Item>
           </NavDropdown>
-            <Nav.Link onClick = {() => handleAlbums(urlAlbums)} >Discos</Nav.Link>
-            <Nav.Link onClick = {() => handleMovies(urlMovies)} >Peliculas</Nav.Link>
+            <Nav.Link onClick = {() => handleProducts(urlAlbums)} >Discos</Nav.Link>
+            <Nav.Link onClick = {() => handleProducts(urlMovies)} >Peliculas</Nav.Link>
           </Nav>
         </Navbar.Collapse>
         )}

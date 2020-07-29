@@ -17,7 +17,7 @@ function LoadingButton({variant, as, handler}) {
         return () => {
             mounted = false;
         }
-    }, [isLoading]);
+    }, [isLoading,handler]);
 
     const handleClick = () => {
         setLoading(true);
