@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState,useEffect} from 'react';
 import './App.css';
 import Login from './components/login/Login';
 import Bar from './components/navbar/Bar'
@@ -29,11 +29,17 @@ const headCells = [
 ];
 
 function App() {
-  // const [logData, setLogData] = useState(initialData);
   const [IsUserLogged, setIsUserLogged] = useState(localStorage.getItem("token") !== null);
   const [products , setProducts] = useState([]);
 
-
+  useEffect(() => {
+    if(IsUserLogged && products.length === 0){
+      handleProducts('https://proyecto-2-mkloster.herokuapp.com/api/albums');
+    }
+    return () => {
+      //cleanup if needed
+    }
+  }, [IsUserLogged,products])
   const handleProducts = (url) => {
     var bearer = 'Bearer ' + localStorage.getItem('token');
     return new Promise((resolve) => 
@@ -65,14 +71,12 @@ function App() {
   }
 
   const handleLog = (data) => {
-    // setLogData(data);
     SetLocalStorage(data);
     setIsUserLogged(true);
     handleProducts('https://proyecto-2-mkloster.herokuapp.com/api/albums');
   };
 
   const handleLogOut = () =>{
-    // setLogData(initialData);
     WipeLocalStorage();
     setIsUserLogged(false);
   }
