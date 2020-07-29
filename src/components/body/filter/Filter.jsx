@@ -22,11 +22,6 @@ const Filter = ({headers,handleText,handleSelect}) => {
           {headers.map((h) =>
             <MenuItem value={h.id}>{h.label}</MenuItem>
           )}
-          {/* <MenuItem value={"name"}>Nombre</MenuItem>
-          <MenuItem value={"year"}>Año</MenuItem>
-          <MenuItem value={"price"}>Precio</MenuItem>
-          <MenuItem value={"quantity"}>Cantidad</MenuItem>
-          <MenuItem value={"genre"}>Genero</MenuItem> */}
         </Select>
       </div>
     </div>

@@ -174,6 +174,7 @@ export default function EnhancedTable({headers ,products}) {
                       <TableCell align="center">{row[headers[2].id]}</TableCell>
                       <TableCell align="center">{row[headers[3].id]}</TableCell>
                       <TableCell align="center">{row[headers[4].id]}</TableCell>
+                      <TableCell align="center">{row[headers[5].id]}</TableCell>
                     </TableRow>
                   );
                 })}

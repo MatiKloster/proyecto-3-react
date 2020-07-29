@@ -53,7 +53,7 @@ function Body({headers,data}){
     }
     
     return (
-        <div className="py-4 col-md-8 offset-md-2">
+        <div>
             <Filter 
                 headers = {headers}
                 handleText = {handleText}

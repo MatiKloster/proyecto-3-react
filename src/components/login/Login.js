@@ -45,7 +45,7 @@ const  Login = (props) => {
   }
 
   return (
-    <Jumbotron className="py-4 col-md-4 offset-md-4">
+    <Jumbotron>
         <InputGroup
           attribute= {{
             id : 'user-Input',
