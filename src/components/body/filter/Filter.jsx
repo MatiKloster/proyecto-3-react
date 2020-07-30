@@ -12,7 +12,7 @@ const Filter = ({headers,handleText,handleSelect}) => {
     return (
       <div style={{ display: "flex" }} className = "pb-4">
       <div style={{ display: "flex", margin: "auto" }}>
-      <TextField onChange = {(e) => handleText(e.target.value)}/>
+      <TextField onChange = {(e) => handleText(e.target.value)} placeholder= {"Filtrar por ..."}/>
         <Select
           labelId=""
           id="select"
