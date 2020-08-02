@@ -13,10 +13,16 @@ const dataBlock = (data) => {
             <Row noGutters>
             <Card.Body>
                 <Card.Title>{data['name']}</Card.Title>
-                <h5 class="font-weight-bold blue-text">{data.hasOwnProperty('artist')? data['artist']: data['director']}</h5>
+                <h5 className="font-weight-bold blue-text">{data.hasOwnProperty('artist')? data['artist']: data['director']}</h5>
                 <Card.Text>Lanzamiento {data['year']}</Card.Text>
-                <Card.Text>Género {data['genre']}</Card.Text>
-                <Card.Text><small class="text-muted">Reservables {data['quantity']}</small></Card.Text>
+                <Card.Text>Género {data['genre']}</Card.Text> 
+                <Card.Text>Precio ${data['price']}</Card.Text>
+                <Card.Text><small className="text-muted">Reservables {data['quantity']}</small></Card.Text>
+                <Card.Text>
+                    <small className="text-muted">Clickeá 
+                        <a href={"http://www.google.com/search?q="+data['name']} target="_blank" rel="noopener noreferrer"> aqui </a>para mas información acerca del producto.
+                    </small>
+                </Card.Text>
             </Card.Body>
             </Row>
         </Card>
@@ -40,13 +46,6 @@ const LoadingData = ({handler}) => {
             mounted = false;
         }
       }, [isLoading,handler])
-
-      useEffect(() => {
-          console.log(ResourceData);
-          return () => {
-              
-          }
-      }, [ResourceData])
 
     return (
         <>

@@ -71,7 +71,8 @@ const handleResource = (url) => {
 export default function ProductModal(props) {
   return (
       <Modal
-        {...props}
+        show={props.show}
+        onHide={props.onHide}
         size="lg"
         aria-labelledby="contained-modal-title-vcenter"
         centered
@@ -94,7 +95,7 @@ export default function ProductModal(props) {
         </Jumbotron>
         </Modal.Body>
         <Modal.Footer>
-          <Button onClick={props.onHide} className = 'textButton'>Close</Button>
+          <Button onClick={props.onHide} className = 'textButton'>Cerrar</Button>
         </Modal.Footer>
       </Modal>
     );

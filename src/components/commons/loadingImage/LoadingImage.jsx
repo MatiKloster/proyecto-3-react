@@ -27,7 +27,7 @@ const LoadingImage = ({handler}) => {
 
     return (
         <div>
-            <img src={Image} class="img-fluid" />
+            <img src={Image} className="img-fluid" alt="" />
             <RingLoader
                 css={override}
                 size={60}

@@ -163,6 +163,7 @@ export default function EnhancedTable({headers ,products, clickOnCell}) {
                       role="checkbox"
                       tabIndex={-1}
                       key={row[headers[0].id]}
+                      style = {{cursor : "pointer"}}
                     >
                       <TableCell
                       component="th"
