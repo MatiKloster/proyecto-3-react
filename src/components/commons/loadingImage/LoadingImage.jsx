@@ -1,9 +1,8 @@
 import React, {useState,useEffect} from 'react';
-import Image from 'react-bootstrap/Image';
 
 const LoadingImage = ({handler}) => {
     const [isLoading, setLoading] = useState(true);
-    const [image, setImage] = useState(null);
+    const [Image, setImage] = useState("");
     
     useEffect(() => {
         let mounted = true;
@@ -11,7 +10,7 @@ const LoadingImage = ({handler}) => {
             handler().then((image) => {
                 if(mounted){
                     setLoading(false);
-                    setImage(image);
+                    setImage("data:image/png;base64,"+image);
                 }
             });
         }
@@ -22,7 +21,7 @@ const LoadingImage = ({handler}) => {
 
     return (
         <div>
-            {(!isLoading) ? <Image src={"data:image/jpg;base64,"+{image}} rounded />: null }
+            <img src={Image} class="img-fluid" alt="No se ha encontrado la imagen"/>
         </div>
     );
 }

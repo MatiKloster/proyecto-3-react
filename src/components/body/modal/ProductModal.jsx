@@ -1,6 +1,15 @@
 import React from 'react';
-import Modal from 'react-bootstrap';
-import LoadingImage from '../../commons/loadingImage/LoadingImage'
+import Modal from 'react-bootstrap/Modal';
+import LoadingImage from '../../commons/loadingImage/LoadingImage';
+import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import LoadingData from '../../commons/loadingData/LoadingData';
+import { Jumbotron } from 'react-bootstrap';
+
+const alertOnError = 'Ocurrio un problema cuando intentábamos cargar la informacion, seguramente nos olvidamos de pagar los servidores!';
+const alertOn401 = 'Ocurrio un problema cuando intentábamos cargar el recurso, probá relogear!';
 
 const handleImage = (url) => {
   var bearer = 'Bearer ' + localStorage.getItem('token');
@@ -15,24 +24,52 @@ const handleImage = (url) => {
       })
       .then((response) => {
         if (response.status === 401) {
-          alert('Ocurrio un problema cuando intentábamos cargar la imagen, probá relogear!');
+          alert(alertOn401);
         }
         else{
           response.json().then(json => 
             {
-              resolve(json.image);
+              resolve(json.data.image);
             }
           )
         }
       })
       .catch(function(error) {
-        alert('Ocurrio un problema cuando intentábamos cargar la imagen, seguramente nos olvidamos de pagar los servidores!');
+        alert(alertOnError);
+    })
+  );
+}
+
+const handleResource = (url) => {
+  var bearer = 'Bearer ' + localStorage.getItem('token');
+  return new Promise((resolve) => 
+      fetch(url, {
+        method: 'GET',
+        credentials: 'omit',
+        headers: {
+            'Authorization': bearer,
+            'Content-Type': 'application/json'
+        },
+      })
+      .then((response) => {
+        if (response.status === 401) {
+          alert(alertOn401);
+        }
+        else{
+          response.json().then(json => 
+            {
+              resolve(json.data);
+            }
+          )
+        }
+      })
+      .catch(function(error) {
+        alert(alertOnError);
     })
   );
 }
 
 export default function ProductModal(props) {
-  
   return (
       <Modal
         {...props}
@@ -42,21 +79,20 @@ export default function ProductModal(props) {
       >
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
-            Modal heading
+            Vista personalizada
           </Modal.Title>
         </Modal.Header>
         <Modal.Body className="show-grid">
-        <Container>
+        <Jumbotron>
           <Row>
             <Col xs={12} md={4}>
-              <LoadingImage handler = {handleImage}/>
+              <LoadingImage handler = {() => handleImage(props.imageUri)}/>
             </Col>
             <Col xs={12} md={8}>
-              Info extra
+              <LoadingData handler ={() => handleResource(props.resourceUri)}/>
             </Col>
           </Row>
-        </Container>
-        
+        </Jumbotron>
         </Modal.Body>
         <Modal.Footer>
           <Button onClick={props.onHide}>Close</Button>

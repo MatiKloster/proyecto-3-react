@@ -68,6 +68,7 @@ function App() {
               {
                 setProducts(json);
                 setHeaders(headers);
+                console.log(json);
               }
             ) 
           }

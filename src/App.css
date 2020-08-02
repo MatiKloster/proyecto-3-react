@@ -11,7 +11,7 @@ html {
 }
 
 body {
-  background: url("img/bg.png") no-repeat 50% 0 fixed;
+  background: url("img/bg-2.png") no-repeat 50% 0 fixed;
   background-size: cover;
   position: relative;
   margin: 0;
@@ -24,5 +24,18 @@ body {
   border-color: #ff5000 !important;
   color: black !important;
   font-family: 'Carter One' !important;
+}
+
+.modal-content {
+  background-size: contain;
+  background-image: url("img/modal-bg.png");
+  background-repeat: no-repeat;
+  width: 100%;
+  height: auto;
+  background-position: right 20px bottom 10px;
+}
+
+.modal-footer {
+  border-top: 0 none !important;
 }
 /*# sourceMappingURL=App.css.map */

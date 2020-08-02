@@ -104,7 +104,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function EnhancedTable({headers ,products}) {
+export default function EnhancedTable({headers ,products, clickOnCell}) {
   const classes = useStyles();
   
   const [order, setOrder] = React.useState("asc");
@@ -118,7 +118,9 @@ export default function EnhancedTable({headers ,products}) {
     setOrderBy(property);
   };
 
-  const handleClick = (event, name) => {};
+  const handleClick = (event, imageUri,resource) => {
+    clickOnCell(imageUri,resource);
+  };
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -157,7 +159,7 @@ export default function EnhancedTable({headers ,products}) {
                   return (
                     <TableRow
                       hover
-                      onClick={event => handleClick(event, row[headers[0].id])}
+                      onClick={event => handleClick(event, row['imageUri'],row['resource'])}
                       role="checkbox"
                       tabIndex={-1}
                       key={row[headers[0].id]}

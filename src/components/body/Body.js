@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import EnhancedTable from './table/EnhancedTable';
 import Filter from './filter/Filter';
-import Modal from 'react-bootstrap/Modal';
-import Button from 'react-bootstrap/Button';
+import ProductModal from './modal/ProductModal';
+
 
 var runFilter =  (arr,filter,header) => {
 
@@ -25,6 +25,9 @@ export default function Body({headers,data}){
     const [filter, setfilter] = useState("");
     const [selectedFilter, setselectedFilter] = useState("name");
     const [NeedFilter, setNeedFilter] = useState(false);
+    const [Modal, setModal] = useState(false);
+    const [ImageUri, setImageUri] = useState("");
+    const [ResourceUri, setResourceUri] = useState("")
 
     useEffect(() => {
         if(NeedFilter){
@@ -47,13 +50,18 @@ export default function Body({headers,data}){
         else{
             setNeedFilter(true);
         }
-        
     }
 
     const handleSelect = (selected) => {
         setselectedFilter(selected);
     }
     
+    const handleClick = (imageUri,resourceUri) => {
+        setImageUri(imageUri);
+        setResourceUri(resourceUri);
+        setModal(true);
+    }
+
     return (
         <div>
             <Filter 
@@ -61,9 +69,16 @@ export default function Body({headers,data}){
                 handleText = {handleText}
                 handleSelect = {handleSelect}
             />
+            <ProductModal 
+                show={Modal} 
+                onHide={() => setModal(false)} 
+                imageUri = {ImageUri}
+                resourceUri = {ResourceUri}
+            />
             <EnhancedTable 
                 headers= {headers} 
                 products = {filteredProducts === []? products: filteredProducts}
+                clickOnCell = {(imageUri,resourceUri) => handleClick(imageUri,resourceUri)}
             />
         </div>
     );
