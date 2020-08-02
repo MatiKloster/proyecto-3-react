@@ -1,23 +1,20 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect, useCallback} from 'react';
 import InputGroup from '../commons/input-group/InputGroup';
 import Jumbotron from 'react-bootstrap/Jumbotron';
 import LoadingButton from '../commons/button/LoadingButton';
 
 const  Login = (props) => {
-  
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [isLoading, setLoading] = useState(false);
 
-  const handleChange = (name,value) => {
-      if(name === 'Email'){
-        setEmail(value);
-      }
-      else{
-        setPassword(value);
-      }
-  };
+  const handleKeyUp = (e) => {
+    if(e.key === 'Enter'){
+      setLoading(true);
+    }
+  }
 
-  const handleClick = () => {
+  const handleClick = useCallback(() => {
     return new Promise((resolve) => 
         fetch("https://proyecto-2-mkloster.herokuapp.com/api/user/token", {
           method: 'GET',
@@ -42,7 +39,32 @@ const  Login = (props) => {
           alert('Ocurrió un error mientras intentábamos logearte, volvé a intentar en unos instantes!');
       })
     );
+  },[props,email,password])
+
+  useEffect(() => {
+    let mounted = true;
+    if (isLoading) {
+        handleClick().then(() => {
+            if(mounted){
+                setLoading(false);
+            }
+        });
+    }
+    return () => {
+        mounted = false;
+    }
+}, [isLoading,handleClick]);
+
+
+
+const handleChange = (name,value) => {
+  if(name === 'Email'){
+    setEmail(value);
   }
+  else{
+    setPassword(value);
+  }
+};
 
   return (
     <Jumbotron>
@@ -63,11 +85,14 @@ const  Login = (props) => {
             placeholder : 'Ingrese su contraseña',
           }}
           handleChange = {handleChange}
+          handleKeyUp = {handleKeyUp}
         />
         <LoadingButton
           variant = {'dark'}
           as = {'submit'}
           handler = {handleClick}
+          isLoading = {isLoading}
+          startLoading = {() => setLoading(true)}
         />
     </Jumbotron>
   );

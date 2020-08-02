@@ -1,39 +1,33 @@
-import React, {useEffect, useState} from 'react'
+import React from 'react'
 import Button from 'react-bootstrap/Button';
-
-  
-function LoadingButton({variant, as, handler}) {
-    const [isLoading, setLoading] = useState(false);
-
-    useEffect(() => {
-        let mounted = true;
-        if (isLoading) {
-            handler().then(() => {
-                if(mounted){
-                    setLoading(false);
-                }
-            });
-        }
-        return () => {
-            mounted = false;
-        }
-    }, [isLoading,handler]);
-
-    const handleClick = () => {
-        setLoading(true);
-    }
+import {css} from '@emotion/core';
+import RingLoader from 'react-spinners/RingLoader';
+const override = css`
+  display: block;
+  margin: 0 auto;
+  border-color: red;
+`;
+function LoadingButton({variant, as,isLoading, startLoading}) {
 
     return (
         <div className = 'row justify-content-center'>
-            <Button
+            {!isLoading && 
+                <Button
                 className = 'textButton'
                 variant={variant}
                 type = {as}
                 disabled={isLoading}
-                onClick={!isLoading ? handleClick : null}
-            >
-                {isLoading ? 'Cargando...' : 'Logear'}
-            </Button>
+                onClick={!isLoading ? startLoading : null}
+                >
+                    Logear
+                </Button>
+            }
+            <RingLoader
+                css={override}
+                size={50}
+                color={"#ff5000"}
+                loading={isLoading}
+            />
         </div>
     );
 }
