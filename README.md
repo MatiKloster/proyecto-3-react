@@ -1,68 +1,18 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Author: Matias Kloster
 
-## Available Scripts
+Reactomundo! es el 3er proyecto de cursado de la materia Ingeniería de Aplicaciones Web - Universidad Nacional del Sur.
 
-In the project directory, you can run:
+Esta aplicacion fue desarrollada bajo el framework React. Lanzada utilizando 'Create-React-app'.
 
-### `npm start`
+Reactomundo! surge como una continuacion del proyecto 2 https://github.com/MatiKloster/proyecto-2-iaw. El cual, haciendo un homenaje a Musimundo!, diseñé una aplicacion back-end utilizando Laravel como framework. En la misma el usuario puede logearse en al sistema y acceder a la oferta de Albums y Peliculas que el local ofrece, como asi tambien puede generar reservas del producto. Como requerimiento fundamental, se nos solicitó que ademas de la aplicacion, diseñemos una API para futuras interacciones. La aplicación del proyecto 2 está detallada en su correspondiente README.md.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+La idea de Reactomundo! fue diseñar una aplicacion front-end que consuma la API antes mencionada en modo lectura (solo mensajes GET). Y agregarle algun tipo de funcionalidad que no haya estado presente en ese proyecto. Por eso tomé la decisión de que Reactomundo! tenga la funcionalidad de realizar busquedas mas precisas utilizando filters y sorters.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+La aplicacion cuenta con una pantalla de login que deberan ingresar utilizando las credenciales generadas en el proyecto 2.
+Luego, en la pantalla principal van a ver la tabla mostrando todos los productos del tipo elegido(Albums | Peliculas). Arriba de la misma encontrarán un dropdown junto con un input, con el cual podran realizar diferentes tipos de busquedas(Precio, Genero, Artista, etc). Si desean obtener mas informacion del producto solo tienen que hacer click encima del mismo y un modal con informacion extra aparecerá.
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Eso fue todo, espero que les guste!
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+Saludos,
+##Matias
