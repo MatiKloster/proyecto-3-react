@@ -1,4 +1,4 @@
-Author: Matias Kloster
+## Reactomundo!
 
 Reactomundo! es el 3er proyecto de cursado de la materia Ingeniería de Aplicaciones Web - Universidad Nacional del Sur.
 
@@ -14,5 +14,5 @@ Luego, en la pantalla principal van a ver la tabla mostrando todos los productos
 
 Eso fue todo, espero que les guste!
 
-Saludos,
-##Matias
+Saludos,<br>
+**Matias**
