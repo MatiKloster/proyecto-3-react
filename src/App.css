@@ -1,38 +1,41 @@
-.App {
-  text-align: center;
+@import url(//fonts.googleapis.com/css?family=Carter+One);
+.logo {
+  color: #ff5000 !important;
+  font-family: 'Carter One';
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+html {
+  height: 100%;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+body {
+  background: url("img/bg-2.png") no-repeat 50% 0 fixed;
+  background-size: cover;
+  position: relative;
+  margin: 0;
+  padding-bottom: 6rem;
+  min-height: 100%;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.textButton {
+  background-color: #ff5000 !important;
+  border-color: #ff5000 !important;
+  color: black !important;
+  font-family: 'Carter One' !important;
 }
 
-.App-link {
-  color: #61dafb;
+.modal-content {
+  background-size: contain;
+  background-image: url("img/modal-bg.png");
+  background-repeat: no-repeat;
+  width: 100%;
+  height: auto;
+  background-position: right 20px bottom 10px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.modal-footer {
+  border-top: 0 none !important;
 }
+/*# sourceMappingURL=App.css.map */
